@@ -19,8 +19,8 @@ The browser was trying to load `/manifest.webmanifest` (referenced in `index.htm
 ```
 
 ### Root Cause
-The client application was configured to send login requests to the Vercel production server (`https://eventserver-weld.vercel.app`) instead of localhost. This caused:
-1. Network timeout trying to reach Vercel from localhost
+The client application was configured to send login requests to a remote backend instead of localhost. This caused:
+1. Network timeout trying to reach the remote server from localhost
 2. OR request succeeded but database queries failed on remote server
 
 ### Solution
@@ -82,7 +82,7 @@ VITE_API_URL=http://localhost:5000
 ## Why These Fixes Work
 
 1. **Manifest File**: Provides proper PWA configuration so browser stops trying to parse HTML as JSON
-2. **API URL Update**: Points client requests to local server instead of production Vercel
+2. **API URL Update**: Points client requests to local server instead of a remote backend
 3. **.env.local File**: Ensures Vite development server uses correct API URL via environment variables
 
 ---

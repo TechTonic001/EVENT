@@ -24,7 +24,10 @@ const organizers = [
 
 async function seedOrganizers() {
     try {
-        const uri = process.env.MONGO_URI || process.env.URI;
+        const uri = process.env.URI || process.env.MONGO_URI;
+        if (!uri) {
+            throw new Error('URI is not set in environment variables');
+        }
 
         // Connect to MongoDB
         await mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });
@@ -35,7 +38,7 @@ async function seedOrganizers() {
             const exists = await Organizer.findOne({ email: org.email });
 
             if (!exists) {
-                const newOrg = await Organizer.create({
+                await Organizer.create({
                     email: org.email.toLowerCase(),
                     password: org.password
                 });

@@ -20,7 +20,7 @@ async function request(path, options = {}) {
     res = await fetch(`${API_URL}${path}`, { ...options, headers })
   } catch (error) {
     throw new Error(
-      'Network error: cannot reach API. Set VITE_API_URL to your deployed backend URL in Vercel.'
+      'Network error: cannot reach API. Set VITE_API_URL to your backend server URL.'
     )
   }
 

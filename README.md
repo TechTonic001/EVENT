@@ -1,3 +1,67 @@
+# EventPro
+
+EventPro is a MERN stack event management app with organizer login, event creation, and dashboard stats.
+
+## Project Structure
+
+```text
+EVENT/
+  Cilent En/Event/      # React + Vite frontend
+  Server En/            # Express + MongoDB backend
+```
+
+## Quick Start
+
+### 1) Backend setup
+
+```bash
+cd "Server En"
+npm install
+copy .env.example .env
+npm start
+```
+
+Backend runs on `http://localhost:5000`.
+
+### 2) Frontend setup
+
+```bash
+cd "Cilent En/Event"
+npm install
+npm run dev
+```
+
+Frontend runs on `http://localhost:5173`.
+
+## Backend Environment Variables
+
+- `URI` (or `MONGO_URI`): MongoDB connection string
+- `PORT`: API port (default `5000`)
+- `JWT_SECRET`: JWT signing secret
+- `ADMIN_EMAIL`: first organizer account email
+- `ADMIN_PASSWORD`: first organizer account password
+- `CORS_ORIGINS`: comma-separated allowed origins (example: `http://localhost:5173`)
+
+## API Endpoints
+
+- `POST /api/auth/login`
+- `GET /api/events`
+- `POST /api/events`
+- `GET /api/events/stats`
+- `GET /health`
+
+## Deployment Notes
+
+- Set environment variables in your host dashboard (do not hardcode secrets).
+- Use a production MongoDB URI and a strong `JWT_SECRET`.
+- Set `CORS_ORIGINS` to your frontend production URL(s).
+- Ensure your database host allows network access from your deployment platform.
+
+## Troubleshooting
+
+- If login fails with `500`, verify `URI` and `JWT_SECRET` are set.
+- If database is disconnected, check MongoDB access rules and credentials.
+- If frontend cannot call backend, check `VITE_API_URL` and backend `CORS_ORIGINS`.
 # EventPro - Event Organizer Portal MVP
 
 A complete MERN stack (MongoDB, Express, React, Node.js) event management platform with organizer authentication, event creation, and sales dashboard.
@@ -115,7 +179,7 @@ cd "Server En"
 npm install
 
 # Edit .env file with your MongoDB connection string
-# MONGO_URI=...
+# URI=...
 
 npm start
 # Server runs on the localhost
@@ -134,7 +198,7 @@ npm run dev
 
 ### Backend (.env)
 ```
-MONGO_URI=mongodb
+URI=mongodb
 PORT=
 JWT_SECRET=
 ADMIN_EMAIL=
@@ -198,7 +262,7 @@ ADMIN_PASSWORD=
 
 ### MongoDB Connection Error
 - Ensure MongoDB is running (check Option A/B/C above)
-- Verify MONGO_URI in `.env`
+- Verify URI in `.env`
 - Check MongoDB is accessible on the configured port
 
 ### Port Already in Use

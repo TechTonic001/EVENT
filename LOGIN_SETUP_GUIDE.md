@@ -9,9 +9,9 @@
 
 ### 2. **Wrong API URL** ❌→✅
 - **Error**: `:5000/api/auth/login:1 Failed to load resource: 500 (Internal Server Error)`
-- **Cause**: Client was trying to reach Vercel instead of localhost:5000
+- **Cause**: Client was trying to reach a remote backend instead of localhost:5000
 - **File**: `Cilent En/Event/src/lib/api.js`
-- **Fix**: Changed default API URL from `https://eventserver-weld.vercel.app` to `http://localhost:5000`
+- **Fix**: Changed default API URL to `http://localhost:5000`
 
 ### 3. **Missing Client Environment File** ❌→✅
 - **Cause**: No `.env.local` for Vite to configure API URL
@@ -91,7 +91,7 @@ Other available accounts:
 ### Still getting 500 error on login?
 1. Check server console for database connection errors
 2. Verify MongoDB is running or accessible via Atlas connection
-3. Ensure .env file has valid MONGO_URI
+3. Ensure .env file has valid URI
 4. Restart both server and client
 
 ### Still getting manifest error?
