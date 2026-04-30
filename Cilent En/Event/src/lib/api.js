@@ -4,8 +4,8 @@ function getApiBaseUrl() {
   const envUrl = import.meta.env.VITE_API_URL
   if (envUrl) return envUrl
 
-  // Force deployed backend as default (no localhost fallback).
-  return 'https://eventserver-weld.vercel.app'
+  // Default to localhost in development
+  return 'http://localhost:5000'
 }
 
 const API_URL = getApiBaseUrl()
